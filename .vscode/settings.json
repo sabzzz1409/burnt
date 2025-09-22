@@ -1,0 +1,15 @@
+{
+	"files.exclude": {
+		"node_modules": true,
+		"*.*": true,
+		"src/*.*": true,
+		// "src/databases":true,
+		"src/middlewares":true,
+		"src/models":true,
+		"src/schemas":true,
+		"src/scripts":true,
+		// "src/servers":true,
+		"src/utils":true,
+		"src/validators":true
+	}
+}
