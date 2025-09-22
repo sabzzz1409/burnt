@@ -6,3 +6,4 @@ export default mysql.createPool({
 	host: "localhost",
 	database: "based"
 });
+

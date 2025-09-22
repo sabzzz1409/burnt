@@ -2,9 +2,13 @@ import express from 'express';
 import settings from "./settings.js"
 import loadRoutes from "#utils/loadRoutes.js";
 import corsSettings from '#utils/corsSettings.js';
+import mySqlDb1 from '#databases/mySqlDb1.js';
+import checkSqlDb from '#utils/checkSqlDb.js';
 
 const { port, apiUrl } = settings
 const router = await loadRoutes();
+
+checkSqlDb(mySqlDb1, "MySQLDB1");
 
 express()
 	.use(
