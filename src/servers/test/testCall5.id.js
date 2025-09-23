@@ -1,6 +1,6 @@
 import express from "express";
 import mySqlDb1 from "#databases/mySqlDb1.js";
-import routeSetup from "#utils/routeSetup.js";
+import routeSetup from "#configs/routeSetup.js";
 
 
 export default express.Router()
@@ -10,13 +10,17 @@ export default express.Router()
 			try {
 				const { body, params } = req;
 				console.log(body);
-				const { piece } = body;
+				// const { piece } = body;
 				const { id } = params;
+				console.log(id);
 				const query = `
-				SELECT * FROM test1 WHERE id=?;
+				SELECT * FROM test1 WHERE test1_id=?;
 				`;
 				const values = [id]
-				console.log(query, piece);
+				console.log(
+					query.trim(),
+					// piece
+				);
 				const [result] = await mySqlDb1.execute(query, values);
 				console.log(result);
 				res.status(200).json({ data: result });

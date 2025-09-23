@@ -10,7 +10,6 @@ export default express.Router()
 				const { body } = req;
 				console.log(body);
 				// const { piece } = body;
-				
 				const query = `
 				SELECT * FROM test1 WHERE name=?;
 				`;
@@ -18,9 +17,9 @@ export default express.Router()
 					// piece
 					"test A"
 				]
-				console.log(query.trim(),"---",values)
-				
-				const [result] = await mySqlDb1.execute(query, values);
+				console.log(query.trim())
+				console.log(values);
+				const [result] = await mySqlDb1.query(query, values);
 				console.log(result);
 
 				/#finale#/

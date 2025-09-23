@@ -1,9 +1,10 @@
 import mysql from "mysql2/promise";
 
 export default mysql.createPool({
+	host: "localhost",
 	user: "root",
 	password: "",
-	host: "localhost",
-	database: "based"
+	database: "based",
+	multipleStatements: false
 });
 

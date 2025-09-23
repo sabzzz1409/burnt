@@ -25,8 +25,10 @@
 		"pm2": "^6.0.11"
 	},
 	"imports": {
-		"#databases/*": "./src/databases/*",
-		"#utils/*": "./src/utils/*"
+		"#databases/*": "./src/repositories/databases/*",
+		"#configs/*": "./src/configs/*",
+		"#models/*": "./src/repositories/models/*",
+		"#schemas/*": "./src/repositories/schemas/*"
 	},
 	"devDependencies": {
 		"nodemon": "^3.1.10"

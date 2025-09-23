@@ -1,27 +1,21 @@
 import express from "express";
-import mySqlDb1 from "#databases/mySqlDb1.js";
 import routeSetup from "#configs/routeSetup.js";
+import baseModel from "#models/base.model.js";
 
 export default express.Router()
 	.get(routeSetup(import.meta.url),
 
 		async (req, res) => {
 			try {
-				const { body } = req;
+				const {
+					body,
+					query
+				} = req;
+
 				console.log(body);
-				// const { piece } = body;
-				
-				const query = `
-				SELECT * FROM test1 WHERE name=?;
-				`;
-				const values = [
-					// piece
-					"test A"
-				]
-				console.log(query.trim(),"---",values)
-				
-				const [result] = await mySqlDb1.execute(query, values);
-				console.log(result);
+				console.log(query);
+
+				const result = await baseModel.find();
 
 				/#finale#/
 				res.status(200).json({ data: result });
