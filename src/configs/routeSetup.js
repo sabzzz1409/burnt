@@ -1,5 +1,5 @@
 import path from "path";
-import fileName from "#utils/fileName.js"
+import fileName from "#configs/fileName.js"
 
 export default (metaUrl) => {
 

@@ -1,10 +1,11 @@
-main.js -> *utils -> servers -> validators -> middlewares -> scripts -> *databases
+main.js -> *utils -> servers -> validators -> middlewares -> scripts -> *repositories --> schemas --> models --> databases
 
 
 params: in ctrl
 
 -   route param; req.params == /:id or /:id?
 -   route query; req.query == /?data=gyugug&info=jiooj
+-   GET,DELETE,PUT,PATCH
 
 tokens: in middleware and validators
 
@@ -15,6 +16,7 @@ data: in ctrl
 
 -   body; req.body
 -   formdata; req.body with multer
+-   POST,PUT,PATCH
 
 
 
@@ -32,6 +34,8 @@ MySQL
 -HAVING
 -ORDER BY ASC DESC
 -LIMIT OFFSET
+
+-COUNT() SUM()
 
 Mongo
 

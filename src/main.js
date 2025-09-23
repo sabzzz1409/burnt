@@ -1,23 +1,35 @@
+// express
 import express from 'express';
-import settings from "./settings.js"
-import loadRoutes from "#utils/loadRoutes.js";
-import corsSettings from '#utils/corsSettings.js';
+// utils
+import settings from "./configs/settings.js"
+import loadRoutes from "#configs/loadRoutes.js";
+import checkSqlDb from '#configs/checkSqlDb.js';
+import checkMongoDb from '#configs/checkMongoDb.js';
+import corsSettings from '#configs/corsSettings.js';
+// databases
 import mySqlDb1 from '#databases/mySqlDb1.js';
-import mongoDb1 from '#databases/MongoDb1.js';
-import checkSqlDb from '#utils/checkSqlDb.js';
-import checkMongoDb from '#utils/checkMongoDb.js';
+import mongoDb1 from '#databases/mongoDb1.js';
 
-const { port, apiUrl } = settings
+/////////////////////////////////////////////////////////////////////////////////////
+
+// settings
+const { port, apiUrl } = settings;
+
+// routes
 const router = await loadRoutes();
 
-// checkSqlDb(mySqlDb1, "MySQLDB1");
-// checkMongoDb(mongoDb1, "mongoDb1");
+// checking databse connections
+await checkSqlDb(mySqlDb1, "MySQLDB1");
+await checkMongoDb(mongoDb1, "mongoDb1");
 
+///////////////////////////////////////////////////////////////////////////////////
+
+// express server setup
 express()
 	.use(
 		express.json(),
 		corsSettings,
 		router
 	)
-	.get("/", (_req, res) => { res.send("Reading!") })
-	.listen(port, () => { console.log(`${apiUrl}:${port}`) });
+	.get("/", (_, res) => { res.send("Reading!") })
+	.listen(port, console.log(`${apiUrl}:${port}`));
