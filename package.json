@@ -10,10 +10,13 @@
 		"not": "cross-env NODE_ENV=prod pm2 stop myNodeApp.js"
 	},
 	"imports": {
-		"#databases/*": "./src/repositories/databases/*",
 		"#configs/*": "./src/configs/*",
+		"#schemas/*": "./src/repositories/schemas/*",
 		"#models/*": "./src/repositories/models/*",
-		"#schemas/*": "./src/repositories/schemas/*"
+		"#databases/*": "./src/repositories/databases/*",
+		"#middlewares/*": "./src/middlewares/*",
+		"#scripts/*": "./src/scripts/*",
+		"#validators/*": "./src/validators/*"
 	},
 	"keywords": [],
 	"author": "nil",
