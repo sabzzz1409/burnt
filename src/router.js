@@ -1,2 +1,14 @@
-// if the dynamic import fails, check if the path is correct 
+// if the dynamic import fails, check if the path is correct
 // use this router manually import the files and export
+import nodeappTestCall6 from './servers/nodeapp/testCall6.js';
+import testTestCall6 from './servers/test/testCall6.js';
+import testCall3 from './servers/testCall3.js';
+
+
+import { Router } from "express";
+
+export default Router().use(
+	testCall3,
+	nodeappTestCall6,
+	testTestCall6
+)

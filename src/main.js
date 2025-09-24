@@ -16,7 +16,11 @@ import mongoDb1 from '#databases/mongoDb1.js';
 const { port, apiUrl } = settings;
 
 // routes
-const router = await loadRoutes();
+const router = await (async () =>
+	process.argv.includes("manual")
+		? (console.log("manual routing"), (await import('./router.js')).default)
+		: (console.log("auto routing"), await loadRoutes())
+)();
 
 // checking databse connections
 await checkSqlDb(mySqlDb1, "MySQLDB1");

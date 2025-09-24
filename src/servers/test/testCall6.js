@@ -12,7 +12,7 @@ export default express.Router()
 					query
 				} = req;
 
-				console.log(body);
+				console.log(body,'test');
 				console.log(query);
 
 				const result = await baseModel.find();

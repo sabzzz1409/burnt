@@ -9,6 +9,12 @@
 		"app": "cross-env NODE_ENV=prod pm2 start myNodeApp.js",
 		"not": "cross-env NODE_ENV=prod pm2 stop myNodeApp.js"
 	},
+	"imports": {
+		"#databases/*": "./src/repositories/databases/*",
+		"#configs/*": "./src/configs/*",
+		"#models/*": "./src/repositories/models/*",
+		"#schemas/*": "./src/repositories/schemas/*"
+	},
 	"keywords": [],
 	"author": "nil",
 	"license": "ISC",
@@ -22,13 +28,8 @@
 		"mongoose": "^8.18.1",
 		"multer": "^2.0.2",
 		"mysql2": "^3.15.0",
-		"pm2": "^6.0.11"
-	},
-	"imports": {
-		"#databases/*": "./src/repositories/databases/*",
-		"#configs/*": "./src/configs/*",
-		"#models/*": "./src/repositories/models/*",
-		"#schemas/*": "./src/repositories/schemas/*"
+		"pm2": "^6.0.11",
+		"sql-template-tag": "^5.2.1"
 	},
 	"devDependencies": {
 		"nodemon": "^3.1.10"

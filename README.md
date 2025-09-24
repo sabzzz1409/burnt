@@ -1,5 +1,7 @@
-main.js -> *utils -> servers -> validators -> middlewares -> scripts -> *repositories --> schemas --> models --> databases
-
+main.js -> *utils -> servers
+-> validators -> middlewares -> scripts
+-> *repositories
+--> schemas --> models --> databases
 
 params: in ctrl
 
@@ -17,9 +19,6 @@ data: in ctrl
 -   body; req.body
 -   formdata; req.body with multer
 -   POST,PUT,PATCH
-
-
-
 
 MySQL
 
