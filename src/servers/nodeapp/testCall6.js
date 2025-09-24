@@ -1,10 +1,20 @@
 import express from "express";
 import routeSetup from "#configs/routeSetup.js";
 import baseModel from "#models/base.model.js";
+import testCall6Middleware from "#middlewares/testCall6.middleware.js";
+import checking from "#scripts/checking.js";
+import validate from "#configs/validate.js";
+import testCall6Validators from "#validators/testCall6.validators.js";
 
 export default express.Router()
-	.get(routeSetup(import.meta.url),
-
+	// verb
+	.get(
+		// server route
+		routeSetup(import.meta.url),
+		// Validators
+		validate(testCall6Validators),
+		// middlewares
+		testCall6Middleware,
 		async (req, res) => {
 			try {
 				const {
@@ -12,9 +22,13 @@ export default express.Router()
 					query
 				} = req;
 
-				console.log(body,'nodeapp');
+				console.log(body, 'nodeapp');
 				console.log(query);
-
+				// scripts
+				checking(5);
+				
+				// repository
+				// // database model schema 
 				const result = await baseModel.find();
 
 				/#finale#/
