@@ -1,4 +1,5 @@
-export default(req,res,next)=>{
-    console.log('midleware here');
-    next()
+export default (_req, _res, next) => {
+	const { log } = console;
+	log('midleware here');
+	next();
 }

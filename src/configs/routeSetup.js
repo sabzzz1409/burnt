@@ -1,13 +1,17 @@
-import path from "path";
-import fileName from "#configs/fileName.js"
+import path
+	from "path";
+import fileName
+	from "#configs/fileName.js"
 
 export default (metaUrl) => {
 
 	const serverRoot = "src/servers";
-	const projectRoot = process.cwd();
+	const { cwd } = process;
+	const projectRoot = cwd();
+	const { relative } = path;
 
 	// Relative path from project root
-	const relativePath = path.relative(projectRoot, fileName(metaUrl)).replace(/\\/g, "/");
+	const relativePath = relative(projectRoot, fileName(metaUrl)).replace(/\\/g, "/");
 
 	// Strip extension
 	const noExt = relativePath.replace(/\.[^/.]+$/, "");

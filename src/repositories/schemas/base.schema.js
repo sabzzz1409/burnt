@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-export default new mongoose.Schema({
-    name: { type: String, required: true },
-    number: { type: Number, required: true }
+const { Schema } = mongoose;
+
+export default new Schema({
+	name: { type: String, required: true },
+	number: { type: Number, required: true }
 });

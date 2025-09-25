@@ -1,15 +1,17 @@
 {
 	"files.exclude": {
-		// "*.*": true,
-		// "node_modules": true,
-		// "stores":true,
-		// "src/*.*": true,
+		"*.*": true,
+		"node_modules": true,
+		"stores": true,
+		"uploads": true,
+		"src/*.*": true,
 		// base folders
 		// "src/configs":true,
-		// "src/middlewares":true,
-		// "src/repositories":true,
-		// "src/scripts":true,
+		"src/customs":true,
+		"src/middlewares":true,
+		"src/repositories":true,
+		"src/scripts":true,
 		// "src/servers":true,
-		// "src/validators":true
+		"src/validators":true
 	}
 }

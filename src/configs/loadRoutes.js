@@ -1,27 +1,47 @@
-import express from "express";
-import fs from "fs";
-import path from "path";
-import url from "url";
-import dirName from "#configs/dirName.js";
+import express
+	from "express";
+import fs
+	from "fs";
+import path
+	from "path";
+import url
+	from "url";
+import dirName
+	from "#configs/dirName.js";
 
-const router = express.Router();
+const { Router } = express;
+const router = Router();
+const use = router.use.bind(router);
+const get = router.get.bind(router);
+
+const { join } = path;
+const { url: baseUrl } = import.meta;
+const baseDirec = dirName(baseUrl);
+const serversPath = join(baseDirec, "..", "servers")
+const {
+	readdirSync,
+	statSync
+} = fs;
+const { pathToFileURL } = url;
+
 let allRoutesLoaded = false; // flag to track loading status
 
 export default async function loadRoutes(
-	dir = path.join(dirName(import.meta.url), "..", "servers")
+	dir = serversPath
 ) {
-	const files = fs.readdirSync(dir);
+	const files = readdirSync(dir);
 
 	for (const file of files) {
-		const fullPath = path.join(dir, file);
-		const stat = fs.statSync(fullPath);
-
-		if (stat.isDirectory()) {
+		const fullPath = join(dir, file);
+		const stat = statSync(fullPath);
+		const isDirec = stat.isDirectory();
+		const isitjsfile = file.endsWith(".js");
+		if (isDirec) {
 			await loadRoutes(fullPath); // recurse
-		} else if (file.endsWith(".js")) {
-			const fileUrl = url.pathToFileURL(fullPath).href;
-			const route = (await import(fileUrl)).default;
-			router.use(route);
+		} else if (isitjsfile) {
+			const { href: fileUrl } = pathToFileURL(fullPath);
+			const { default: route } = await import(fileUrl);
+			use(route);
 		}
 	}
 
@@ -29,7 +49,7 @@ export default async function loadRoutes(
 	allRoutesLoaded = true;
 
 	// Status route
-	router.get("/status", (req, res) => {
+	get("/status", (_req, res) => {
 		if (allRoutesLoaded) {
 			res.send("All routes loaded successfully!");
 		} else {

@@ -1,3 +1,4 @@
-export default(val)=>{
-    console.log(val)
+export default (val) => {
+	const { log } = console;
+	log(val);
 }

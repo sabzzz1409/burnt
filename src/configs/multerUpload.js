@@ -1,11 +1,19 @@
-import multer from "multer";
+import multer
+	from "multer";
+
+const { diskStorage } = multer;
 
 export default multer({
-	storage: multer.diskStorage({
+	storage: diskStorage({
 		destination: (req, file, cb) => cb(null, 'uploads/'),
 		filename: (req, file, cb) => {
 			// console.log(file)
-			return cb(null, Date.now() + '-' + file.originalname + '.' + file.mimetype.split('/')[1])
+			const {
+				originalname,
+				mimetype
+			} = file;
+
+			return cb(null, Date.now() + '-' + originalname + '.' + mimetype.split('/')[1])
 		}
 	})
 })

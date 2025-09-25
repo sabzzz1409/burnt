@@ -1,3 +1,6 @@
-import url from "url";
+import url
+	from "url";
 
-export default (fileUrl) => url.fileURLToPath(fileUrl);
+const { fileURLToPath } = url;
+
+export default (fileUrl) => fileURLToPath(fileUrl);

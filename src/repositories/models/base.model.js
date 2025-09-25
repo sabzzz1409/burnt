@@ -1,4 +1,5 @@
 import mongoDb1 from "#databases/mongoDb1.js";
 import baseSchema from "#schemas/base.schema.js";
 
-export default mongoDb1.model("base",baseSchema,"base")
+const model = mongoDb1.model.bind(mongoDb1);
+export default model("base", baseSchema, "base")
