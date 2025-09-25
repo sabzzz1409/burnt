@@ -9,6 +9,8 @@ import corsSettings from '#configs/corsSettings.js';
 // databases
 import mySqlDb1 from '#databases/mySqlDb1.js';
 import mongoDb1 from '#databases/mongoDb1.js';
+import path from 'path';
+import dirName from '#configs/dirName.js';
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,7 +35,8 @@ express()
 	.use(
 		express.json(),
 		corsSettings,
-		router
+		router,
+		express.static(path.join(dirName(import.meta.url), "..", "uploads"))
 	)
 	.get("/", (_, res) => { res.send("Reading!") })
 	.listen(port, console.log(`${apiUrl}:${port}`));

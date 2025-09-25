@@ -1,7 +1,6 @@
 import express from "express";
 // import mySqlDb1 from "#databases/mySqlDb1.js";
 import routeSetup from "#configs/routeSetup.js";
-import sql from "sql-template-tag";
 import mySqlDb1 from "#databases/mySqlDb1.js";
 
 export default express.Router()
@@ -12,7 +11,7 @@ export default express.Router()
 				const { body } = req;
 				console.log(body);
 
-				const query1 = sql`
+				const query1 = `
 				SELECT * FROM iotable WHERE iotable_d_in=0;
 				`;
 
