@@ -1,7 +1,7 @@
 // express
 import express
 	from 'express';
-// utils
+// configurations
 import settings
 	from "#configs/settings.js"
 import routeGear
@@ -21,10 +21,13 @@ import mySqlDb1
 	from '#databases/mySqlDb1.js';
 import mongoDb1
 	from '#databases/mongoDb1.js';
+import basicGetCall from '#configs/basicGetCall.js';
+import parseURLEncoded from '#configs/parseURLEncoded.js';
 
 /////////////////////////////////////////////////////////////////////////////////////
 
 // settings
+
 const {
 	port,
 	apiUrl
@@ -57,21 +60,19 @@ await checkMongoDb(
 
 // express server setup
 
+// global middleware
 use(
 	parseJson,
+	parseURLEncoded,
 	corsSettings,
 	router,
-	staticPath(appUrl)
+	staticPath(appUrl,"uploads"),
+	basicGetCall
 );
 
-get(
-	"/",
-	(_, res) => {
-		res.send("Reading!")
-	}
-);
-
-listen(
+// setting server
+const server = listen(
 	port,
 	log(`${apiUrl}:${port}`)
 );
+

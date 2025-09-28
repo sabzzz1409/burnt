@@ -1,7 +1,11 @@
-main.js -> *utils -> servers
+custom.js file -> main.js -> *utils -> servers
 -> validators -> middlewares -> scripts
 -> *repositories
---> schemas --> models --> databases
+	--> schemas --> models --> databases
+**customs
+
+
+
 
 params: in ctrl
 
@@ -22,7 +26,7 @@ data: in ctrl
 
 MySQL
 
--SELECT DISTINCT FROM LIKE NOT AS
+-SELECT DISTINCT FROM NOT AS IS
 -INSERT INTO
 -UPDATE SET
 -DELETE FROM
@@ -30,7 +34,6 @@ MySQL
 -JOIN ON
 -WHERE AND OR IN
 -GROUP BY
--HAVING
 -ORDER BY ASC DESC
 -LIMIT OFFSET
 
@@ -53,3 +56,5 @@ updateMany
 
 deleteOne
 deleteMany
+
+aggregate

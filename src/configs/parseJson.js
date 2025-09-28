@@ -3,4 +3,6 @@ import express
 
 const { json } = express;
 
-export default json();
+export default json({
+
+});

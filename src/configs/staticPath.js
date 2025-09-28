@@ -5,11 +5,12 @@ import dirName
 import path
 	from "path";
 
-export default (metaUrl) => {
-	const { static: _static } = express;
+const { static: _static } = express;
+const { join } = path;
+
+export default (metaUrl,folder) => {
 	const direc = dirName(metaUrl);
-	const { join } = path;
-	const uploadDirec = join(direc, "..", "uploads")
+	const uploadDirec = join(direc, "..", folder)
 	return _static(uploadDirec);
 }
 

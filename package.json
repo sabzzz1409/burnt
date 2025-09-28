@@ -11,6 +11,7 @@
 	},
 	"imports": {
 		"#configs/*": "./src/configs/*",
+		"#customs/*": "./src/customs/*",
 		"#schemas/*": "./src/repositories/schemas/*",
 		"#models/*": "./src/repositories/models/*",
 		"#databases/*": "./src/repositories/databases/*",
