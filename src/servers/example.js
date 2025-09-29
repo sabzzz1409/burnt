@@ -9,14 +9,10 @@ import checking
 import mySqlDb1
 	from "#databases/mySqlDb1.js";
 
-const { Router } = express
-const router = Router();
-const serverRoute = routeSetup(import.meta.url);
-
 // servers
-export default router.delete(
+export default express.Router().delete(
 	// middlewares,configs,validators
-	serverRoute,
+	routeSetup(import.meta.url),
 	testCall6Middleware,
 	async (req, res) => {
 		try {

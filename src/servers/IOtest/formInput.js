@@ -18,12 +18,11 @@ export default express.Router()
 		async (req, res) => {
 			try {
 				const { body, files } = req;
-				const { log } = console;
-				log(body);
+				console.log(body);
 				const { data } = body;
 				const fData = JSON.parse(data);
-				log(fData);
-				log(files);
+				console.log(fData);
+				console.log(files);
 				const { uploadFile } = files;
 				const [file] = uploadFile || [];
 				const { filename } = file || '-';
@@ -35,13 +34,13 @@ export default express.Router()
 				const values = Object.values(fData);
 
 				const query = `INSERT INTO iotable (${columns}) VALUES (${placeholders})`;
-				log(query)
+				console.log(query)
 				const [result] = await mySqlDb1.execute(query, values);
 
 				res.status(200).json({ data: result });
 			} catch (error) {
-				console.error(error);
-				res.status(500).json({ error: error.message });
+				console.log(error);
+				res.status(500).json(error);
 			}
 		}
 	);
