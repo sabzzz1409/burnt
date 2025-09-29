@@ -1,0 +1,14 @@
+app & route setup done
+basic configs done
+custom folder set
+mongo and mysql repositories set
+script hooking done
+
+*to be done
+set multer folder and error message setup  and size and type constraints
+-none
+-single
+-array
+-field
+middlewares asynchronous to be tested
+validators with form setup and table setup
