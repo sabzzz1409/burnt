@@ -4,9 +4,6 @@ custom.js file -> main.js -> *utils -> servers
 	--> schemas --> models --> databases
 **customs
 
-
-
-
 params: in ctrl
 
 -   route param; req.params == /:id or /:id?

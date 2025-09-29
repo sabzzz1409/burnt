@@ -13,9 +13,8 @@ import testCall3
 
 const { Router } = express;
 const router = Router();
-const use = router.use.bind(router);
 
-export default use(
+export default router.use(
 	testCall3,
 	nodeappTestCall6,
 	testTestCall6

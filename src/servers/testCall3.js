@@ -7,17 +7,15 @@ import routeSetup
 
 const { Router } = express;
 const router = Router();
-const get = router.get.bind(router);
-const { url: serverFileUrl } = import.meta;
-const serverRoute = routeSetup(serverFileUrl);
+const serverRoute = routeSetup(import.meta.url);
 
-export default get(
+export default router.get(
 	serverRoute,
 	async (req, res) => {
 		try {
 			const { body } = req;
-			const { log } = console;
-			log(body);
+
+			console.log(body);
 
 			const query = `
 				SELECT * FROM test1 WHERE name=?;
@@ -27,23 +25,20 @@ export default get(
 				"test A"
 			];
 
-			log(query.trim())
-			log(values);
+			console.log(query.trim())
+			console.log(values);
 
-			const execute = mySqlDb1.execute.bind(mySqlDb1);
+			const [result] = await mySqlDb1.execute(query, values);
 
-			const [result] = await execute(query, values);
-
-			log(result);
+			console.log(result);
 
 			/#finale#/
 			res.status(200).json({ data: result });
 			/########/
 
-		} catch (err) {
-			const { error } = console;
-			error(err)
-			res.status(500).json({ error: err1 })
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ error })
 		}
 	}
 )

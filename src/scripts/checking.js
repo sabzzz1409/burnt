@@ -1,4 +1,3 @@
 export default (val) => {
-	const { log } = console;
-	log(val);
+	console.log(val);
 }

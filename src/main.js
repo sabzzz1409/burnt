@@ -16,13 +16,15 @@ import corsSettings
 	from '#configs/corsSettings.js';
 import staticPath
 	from '#configs/staticPath.js';
+import basicGetCall
+	from '#configs/basicGetCall.js';
+import parseURLEncoded
+	from '#configs/parseURLEncoded.js';
 // databases
 import mySqlDb1
 	from '#databases/mySqlDb1.js';
 import mongoDb1
 	from '#databases/mongoDb1.js';
-import basicGetCall from '#configs/basicGetCall.js';
-import parseURLEncoded from '#configs/parseURLEncoded.js';
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,14 +35,8 @@ const {
 	apiUrl
 } = settings;
 
-const { url: appUrl } = import.meta;
-const { log } = console;
-
 const app = express();
-
-const use = app.use.bind(app);
-const get = app.get.bind(app);
-const listen = app.listen.bind(app);
+const appUrl = import.meta.url;
 
 const router = await routeGear();
 
@@ -48,7 +44,7 @@ const router = await routeGear();
 
 await checkSqlDb(
 	mySqlDb1,
-	"MySQLDB1"
+	"mySqlDb1"
 );
 
 await checkMongoDb(
@@ -58,21 +54,21 @@ await checkMongoDb(
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-// express server setup
+// // express server setup
 
 // global middleware
-use(
+app.use(
 	parseJson,
 	parseURLEncoded,
 	corsSettings,
 	router,
-	staticPath(appUrl,"uploads"),
+	staticPath(appUrl, "uploads"),
 	basicGetCall
 );
 
 // setting server
-const server = listen(
+const server = app.listen(
 	port,
-	log(`${apiUrl}:${port}`)
+	console.log(`${apiUrl}:${port}`)
 );
 

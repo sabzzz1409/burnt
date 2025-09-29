@@ -9,13 +9,10 @@ import url
 import dirName
 	from "#configs/dirName.js";
 
-const { Router } = express;
-const router = Router();
-const use = router.use.bind(router);
-const get = router.get.bind(router);
+const router = express.Router();
 
 const { join } = path;
-const { url: baseUrl } = import.meta;
+const baseUrl = import.meta.url;
 const baseDirec = dirName(baseUrl);
 const serversPath = join(baseDirec, "..", "servers")
 const {
@@ -41,7 +38,7 @@ export default async function loadRoutes(
 		} else if (isitjsfile) {
 			const { href: fileUrl } = pathToFileURL(fullPath);
 			const { default: route } = await import(fileUrl);
-			use(route);
+			router.use(route);
 		}
 	}
 
@@ -49,7 +46,7 @@ export default async function loadRoutes(
 	allRoutesLoaded = true;
 
 	// Status route
-	get("/status", (_req, res) => {
+	router.get("/status", (_req, res) => {
 		if (allRoutesLoaded) {
 			res.send("All routes loaded successfully!");
 		} else {
